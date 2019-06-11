@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwf.Dao.studentMapper">
+    <select id="queryStudentAll" resultType="com.lwf.entity.Student">
+        select *from students
+    </select>
+    <select id="queryStudentById" parameterType="int" resultType="com.lwf.entity.Student">
+        select  * from students where id =#{id}
+    </select>
+    <insert id="insertStudent" parameterType="com.lwf.entity.Student" useGeneratedKeys="true" keyProperty="id">
+        insert  into  students (name,age) values(#{name},#{age})
+    </insert>
+    <update id="updateStudent" parameterType="com.lwf.entity.Student">
+        update students set name=#{name} ,age=#{age} where id=#{id}
+    </update>
+    <select  id="queryStudentByIdWithTH" parameterType="int" resultMap="rMap">
+        select * from students where id=#{id}
+    </select>
+    <!--两种typehandler的写法用法，-->
+    <update id="updateStudentSex1" parameterType="com.lwf.entity.Student" >
+        update students set sex=#{sex,typeHandler=com.lwf.mytypehandler.SexTypeHandler} where id=#{id}
+    </update>
+    <update id="updateStudentSex" parameterType="com.lwf.entity.Student" >
+        update students set sex=#{sex} where id=#{id}
+    </update>
+    <parameterMap id="pMap" type="com.lwf.entity.Student">
+        <parameter property="sex" typeHandler="com.lwf.mytypehandler.SexTypeHandler"/>
+    </parameterMap>
+    <resultMap id="rMap" type="com.lwf.entity.Student">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex" typeHandler="com.lwf.mytypehandler.SexTypeHandler"/>
+    </resultMap>
+</mapper>

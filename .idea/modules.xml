@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyBatisLearn.iml" filepath="$PROJECT_DIR$/MyBatisLearn.iml" />
       <module fileurl="file://$PROJECT_DIR$/learn1/learn1.iml" filepath="$PROJECT_DIR$/learn1/learn1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/learn3/learn3.iml" filepath="$PROJECT_DIR$/learn3/learn3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/learn4/learn4.iml" filepath="$PROJECT_DIR$/learn4/learn4.iml" />
     </modules>
   </component>
 </project>

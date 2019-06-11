@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties" >
+        <property name="user" value="root"/>
+        <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/>
+        <!--控制是否使用默认值以及默认值设置时候使用的separator标记是什么-->
+        <property name="org.apache.ibatis.parsing.PropertyParser.default-value-separator" value="!"/>
+    </properties>
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.lwf.Dao.studentMapper" alias="studentMapper"/>
+        <package name="com.lwf.Dao" />
+    </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="com.lwf.mytypehandler.SexTypeHandler" javaType="boolean" jdbcType="BIT" />
+    </typeHandlers>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username!root}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/lwf/Dao/studentMapper.xml"/>
+        <!--<package name="com.lwf.Dao" ></package>-->
+    </mappers>
+</configuration>
